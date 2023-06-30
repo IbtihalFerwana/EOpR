@@ -20,16 +20,14 @@ if __name__ == "__main__":
     results_dir = args.results
     figures_dir = args.figures
 
-    if not os.path.exists('figures'):
-        os.mkdir('figures')
-    if not os.path.exists('results'):
-        os.mkdir('results')
+    if not os.path.exists(figures_dir):
+        os.mkdir(figures_dir)
+    if not os.path.exists(results_dir):
+        os.mkdir(results_dir)
     
     # first row is the treated row
     df = pd.read_csv(datafile, index_col=0)
     cols = np.array(df.columns)
-    print(cols)
-    print(pretreatment_end)
     TrainingEnd = np.where(cols==pretreatment_end)[0][0] # index
     M = np.array(df)
     m = M[0] # treated unit
