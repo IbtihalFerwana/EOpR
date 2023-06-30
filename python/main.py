@@ -26,8 +26,10 @@ if __name__ == "__main__":
         os.mkdir('results')
     
     # first row is the treated row
-    df = pd.read_csv(datafile)
+    df = pd.read_csv(datafile, index_col=0)
     cols = np.array(df.columns)
+    print(cols)
+    print(pretreatment_end)
     TrainingEnd = np.where(cols==pretreatment_end)[0][0] # index
     M = np.array(df)
     m = M[0] # treated unit
@@ -57,10 +59,9 @@ if __name__ == "__main__":
     lw = 2.5
     fs = 20
     plt.plot(m, '-',label='treated unit',fillstyle='none',color='black',linewidth=lw-0.5)
-    plt.axvline(15.5, linestyle = '--', color = 'black',linewidth=1,label='intervention')
 
     plt.plot(cols, ubar, '--',label='EOpR',fillstyle='none',color='tab:blue',linewidth=lw,zorder=10)
-
+    plt.axvline(str(int(pretreatment_end)-1), linestyle = '--', color = 'black',linewidth=1,label='intervention')
     plt.xticks(rotation=90,fontsize=fs-8)
     plt.yticks(fontsize=fs-8)
 
@@ -75,11 +76,12 @@ if __name__ == "__main__":
     lw = 2.5
     fs = 20
     plt.plot(m, '-',label='treated unit',fillstyle='none',color='black',linewidth=lw-0.5)
-    plt.axvline(15.5, linestyle = '--', color = 'black',linewidth=1,label='intervention')
-
+    
     plt.plot(cols, ubar, '--',label='EOpR',fillstyle='none',color='tab:blue',linewidth=lw,zorder=10)
     plt.plot((ubar.T + max_error)[0], '--',label='worst case',fillstyle='none',linewidth=lw-1,color='gray')
     plt.plot((ubar.T - max_error)[0], '--',fillstyle='none',linewidth=lw-1,color='gray')
+
+    plt.axvline(str(int(pretreatment_end)-1), linestyle = '--', color = 'black',linewidth=1,label='intervention')
 
     plt.xticks(rotation=90,fontsize=fs-8)
     plt.yticks(fontsize=fs-8)
