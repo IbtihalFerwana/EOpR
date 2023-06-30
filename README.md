@@ -6,7 +6,7 @@ EOpR
 Code for manuscript **Optimal Recovery for Causal Inference** https://arxiv.org/abs/2208.06729
 
 
-Empirical Experiments Replication
+Experiments replication
 ========================
 
 #### Abadie's Basque Country
